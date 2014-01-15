@@ -29,7 +29,7 @@ function call --description 'Run a builtin or program' --no-scope-shadowing
 	#
 	# Define main function and call
 	#
-	echo "function -S __run_internal_function_name; $cmd \$argv $redir; end"  | .
+	echo "function __run_internal_function_name -S; $cmd \$argv $redir; end"  | .
 	set -e cmd
 	set -e redir
 	__run_internal_function_name $argv
