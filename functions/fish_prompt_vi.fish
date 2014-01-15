@@ -4,7 +4,7 @@ if type bind_mode >/dev/null
             case insert
                 echo -n "$fish_color_mode_insert""[i] "
             case default
-                echo -n "$fish_color_mode_default""[d] "
+                echo -n "$fish_color_mode_default""[n] "
             case command
                 echo -n "$fish_color_mode_command""[c] "
             case '*'
