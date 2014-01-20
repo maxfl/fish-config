@@ -4,6 +4,8 @@ function fish_prompt_vi
             echo "$fish_color_mode_insert""i] "
         case default
             echo "$fish_color_mode_default""n] "
+        case visual
+            echo "$fish_color_mode_visual""v] "
         case ''
             echo ''
         case '*'

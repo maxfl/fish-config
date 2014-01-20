@@ -23,25 +23,7 @@ if status --is-interactive
     set -g __fish_git_prompt_show_informative_status 1
     set_user_colors
 
-	set -g fish_cursor_insert
-	set -g fish_cursor_default
-	if set -q KONSOLE_PROFILE_NAME
-		set fish_cursor_insert "\e]50;CursorShape=1\x7"
-		set fish_cursor_default "\e]50;CursorShape=0\x7"
-	else if set -q XTERM_LOCALE
-		set fish_cursor_insert "\e[6 q"
-		set fish_cursor_default "\e[2 q"
-	end
-
-	function fish_cursor_vi --on-variable fish_bind_mode
-		switch $fish_bind_mode
-			case insert
-				echo -en $fish_cursor_insert
-			case '*'
-				echo -en $fish_cursor_default
-		end
-	end
+    fish_vi_cursor
 	set fish_bind_mode insert
-
 end
 

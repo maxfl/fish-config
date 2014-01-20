@@ -7,8 +7,9 @@ function fish_user_key_bindings --description 'User key bindings for fish'
         set mode -M insert -m insert
     end
 
-    bind -e \e
+    bind -M insert -e \cc
     bind -M insert -m default \cc force-repaint
+    bind \cc 'commandline ""'
 
     bind $mode \eW '.cmd_wrap \( \)'
 
@@ -25,8 +26,14 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     
     bind $mode \ed "set -l cl (commandline -o); if set -q cl[1]; commandline -f kill-word; else; dirh; commandline -f repaint; end"
 
+    bind dG 'commandline ""'
+    bind cG -m insert 'commandline ""' force-repaint
+
     bind gt __commandline_toggle
     bind ge .edit_cmd
-    bind : 'read -l -s -m vi_command -p "echo (bind_mode):" var; echo $var|source; commandline -f repaint'
+    bind : 'read -l -s -m vi_command -p "echo $fish_bind_mode:" var; echo $var|source; commandline -f repaint'
+
+    bind -M insert -e \e
+    bind -M insert -m default \e force-repaint
 end
 
