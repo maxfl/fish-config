@@ -1,7 +1,8 @@
 
 function fish_user_key_bindings --description 'User key bindings for fish'
     set -l mode
-    if functions -q fish_vi_key_bindings
+    set -q fish_vi_key_bindings
+    if and functions -q fish_vi_key_bindings
         fish_vi_key_bindings
         set fish_bind_mode insert
         fish_default_key_bindings -M insert -m insert
