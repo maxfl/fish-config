@@ -1,9 +1,3 @@
-set fish_function_path ~/.config/fish/redef_functions $fish_function_path
-set fish_complete_path ~/.config/fish/new_completions $fish_complete_path
-
-set PATH /home/(whoami)/bin/gcc $PATH /home/(whoami)/bin /usr/sbin /sbin
-clearpath
-
 setfirstexecutable EDITOR vim joe mcedit nano pico
 setfirstexecutable BROWSER opera chromium luakit firefox iceweasel
 setfirstexecutable PAGER vimpager most less more
