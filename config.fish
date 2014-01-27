@@ -13,8 +13,5 @@ if status --is-interactive
     if not set -Uq fish_user_config_set
         set_user_colors
     end
-
-    fish_vi_cursor
-	set fish_bind_mode insert
 end
 
