@@ -18,12 +18,15 @@ function fish_prompt --description 'Write out the prompt'
 		set user "$fish_prompt_user"$USER
 	end
 
+	echo -ne '\033[2K'
+	prompt_git '[%s] '
+	prompt_vi '[%s] '
+	prompt_njobs
 	echo -n $user
 	echo -n "$__fish_prompt_hostname"
 	echo -n "$fish_prompt_normal":
 	prompt_pwd
-	prompt_vi ' [' ']'
-	prompt_njobs
+    echo -n "$fish_prompt_normal"
 	echo
 	echo -n $suffix
 end
