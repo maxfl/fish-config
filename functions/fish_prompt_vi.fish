@@ -1,15 +1,15 @@
 function fish_prompt_vi
     switch "$fish_bind_mode"
         case insert
-            echo "$fish_color_mode_insert""i] "
+            echo -n "$fish_color_mode_insert""i] "
         case default
-            echo "$fish_color_mode_default""n] "
+            echo -n "$fish_color_mode_default""n] "
         case visual
-            echo "$fish_color_mode_visual""v] "
+            echo -n "$fish_color_mode_visual""v] "
         case ''
-            echo ''
+            echo -n ''
         case '*'
-            echo $fish_color_mode_default"$fish_bind_mode] "
+            echo -n $fish_color_mode_default"$fish_bind_mode] "
     end
 end
 
