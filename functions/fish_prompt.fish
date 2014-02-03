@@ -19,13 +19,18 @@ function fish_prompt --description 'Write out the prompt'
 	end
 
 	echo -ne '\033[2K'
-	prompt_git '[%s] '
+    if functions -q fish_vi_cursor_handle
+        fish_vi_cursor_handle
+    end
 	prompt_vi '[%s] '
+    echo -n "$fish_prompt_normal"
 	prompt_njobs
 	echo -n $user
 	echo -n "$__fish_prompt_hostname"
 	echo -n "$fish_prompt_normal":
 	prompt_pwd
+    echo -n "$fish_prompt_normal"
+	prompt_git '    [%s] '
     echo -n "$fish_prompt_normal"
 	echo
 	echo -n $suffix

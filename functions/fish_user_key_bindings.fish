@@ -20,8 +20,6 @@ function fish_user_key_bindings --description 'User key bindings for fish'
         bind ge .edit_cmd
         bind : 'read -l -s -m vi_command -p "echo $fish_bind_mode:" var; echo $var|source; commandline -f repaint'
 
-        bind -M insert -e \e
-        bind -M insert -m default \e force-repaint
     end
 
     bind $mode \eW '.cmd_wrap \( \)'
@@ -39,5 +37,9 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     
     bind $mode \ed "set -l cl (commandline -o); if set -q cl[1]; commandline -f kill-word; else; dirh; commandline -f repaint; end"
 
+    if set -q mode[1]
+        bind -M insert -e \e
+        bind -M insert -m default \e force-repaint
+    end
 end
 
