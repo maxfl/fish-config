@@ -7,12 +7,12 @@ function fish_prompt --description 'Write out the prompt'
 		set -g __fish_prompt_normal (set_color normal)
 	end
 
-	set -l suffix "$fish_prompt_normal"'% '
+	set -l suffix '% '
 	set -l user ''
 	switch "$USER"
 	case root
 		set user "$fish_prompt_root"root
-		set suffix "$fish_prompt_normal"'# '
+		set suffix '# '
 
 	case '*'
 		set user "$fish_prompt_user"$USER
@@ -30,8 +30,12 @@ function fish_prompt --description 'Write out the prompt'
 	echo -n "$fish_prompt_normal":
 	prompt_pwd
     echo -n "$fish_prompt_normal"
-	prompt_git '    [%s] '
+    switch $PWD
+        case ~
+        case '*'
+        prompt_git '    [%s] '
+    end
     echo -n "$fish_prompt_normal"
 	echo
-	echo -n $suffix
+	echo -n $fish_prompt_normal$suffix
 end
