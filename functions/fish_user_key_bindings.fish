@@ -1,22 +1,29 @@
 
 function fish_user_key_bindings --description 'User key bindings for fish'
     set -l mode
-    set -q fish_vi_key_bindings
+    test $fish_vi_key_bindings[1] = 1
     if and functions -q fish_vi_key_bindings
+        bind -e -a
         fish_vi_key_bindings
         if set -q fish_vi_cursor
             fish_vi_cursor
         end
         set fish_bind_mode insert
-        fish_default_key_bindings -M insert -m insert
+        #fish_default_key_bindings -M insert -m insert
         set mode -M insert -m insert
 
-        bind -M insert -e \cc
-        bind -M insert -m default \cc force-repaint
-        bind \cc 'commandline ""'
+        #bind -M insert -e \cc
+        #bind -M insert -m insert \cc kill-whole-line force-repaint
+        bind $mode \cc 'commandline ""'
+        bind $mode \ck kill-line
 
-        bind dG 'commandline ""'
-        bind cG -m insert 'commandline ""' force-repaint
+        bind -M insert -m insert \cf forward-char
+
+        bind dG kill-whole-line
+        bind cG -m insert kill-whole-line force-repaint
+
+        bind -M insert -m insert \e\[H beginning-of-line
+        bind -M insert -m insert \e\[F end-of-line
 
         bind gt __commandline_toggle
         bind ge .edit_cmd
@@ -24,6 +31,18 @@ function fish_user_key_bindings --description 'User key bindings for fish'
 
         bind -M visual -m insert c default kill-selection end-selection force-repaint
         bind $mode \e\x7f backward-kill-path-component
+
+        bind $mode \e\eOC nextd-or-forward-word
+        bind $mode \e\eOD prevd-or-backward-word
+        bind $mode \e\e\[C nextd-or-forward-word
+        bind $mode \e\e\[D prevd-or-backward-word
+        bind $mode \eO3C nextd-or-forward-word
+        bind $mode \eO3D prevd-or-backward-word
+        bind $mode \e\[3C nextd-or-forward-word
+        bind $mode \e\[3D prevd-or-backward-word
+        bind $mode \e\[1\;3C nextd-or-forward-word
+        bind $mode \e\[1\;3D prevd-or-backward-word
+        bind $mode \cl 'clear; commandline -f repaint'
     end
 
     bind $mode \eW '.cmd_wrap \( \)'
@@ -38,8 +57,10 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     bind $mode \ek history-token-search-backward
 
     bind $mode \es __commandline_toggle
-    
+
     bind $mode \ed "set -l cl (commandline -o); if set -q cl[1]; commandline -f kill-word; else; dirh; commandline -f repaint; end"
+
+	bind $mode \e\n "commandline -i \n"
 
     if set -q mode[1]
         bind -M insert -e \e

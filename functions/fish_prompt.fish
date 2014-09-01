@@ -18,7 +18,7 @@ function fish_prompt --description 'Write out the prompt'
 		set user "$fish_prompt_user"$USER
 	end
 
-	echo -ne '\033[2K'
+	#echo -ne '\033[2K'
     if functions -q fish_vi_cursor_handle
         fish_vi_cursor_handle
     end
@@ -36,6 +36,8 @@ function fish_prompt --description 'Write out the prompt'
         prompt_git '    [%s] '
     end
     echo -n "$fish_prompt_normal"
-	echo
-	echo -n $fish_prompt_normal$suffix
+    if test "$fish_prompt_multiline"
+        echo
+    end
+	echo -n $suffix
 end
