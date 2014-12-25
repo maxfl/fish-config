@@ -1,7 +1,7 @@
 
 function fish_user_key_bindings --description 'User key bindings for fish'
     set -l mode
-    test $fish_vi_key_bindings[1] = 1
+    test "$fish_vi_key_bindings[1]" = 1
     if and functions -q fish_vi_key_bindings
         bind -e -a
         fish_vi_key_bindings
