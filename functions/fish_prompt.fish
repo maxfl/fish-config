@@ -24,7 +24,6 @@ function fish_prompt --description 'Write out the prompt'
     end
 	prompt_vi '[%s] '
     echo -n "$fish_prompt_normal"
-	prompt_njobs
 	echo -n $user
 	echo -n "$__fish_prompt_hostname"
 	echo -n "$fish_prompt_normal":
@@ -35,6 +34,7 @@ function fish_prompt --description 'Write out the prompt'
         case '*'
         prompt_git '    [%s] '
     end
+	prompt_njobs
     echo -n "$fish_prompt_normal"
     if test "$fish_prompt_multiline"
         echo
