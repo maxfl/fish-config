@@ -1,4 +1,8 @@
 function tocmd
-	read -z -a -l str
-commandline $str
+	commandline -r
+	while read -l line
+		echo $line
+		commandline -a $line
+		commandline -a \n
+	end
 end
