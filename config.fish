@@ -9,9 +9,13 @@ if status --is-interactive
     end
 
     if set -q DISPLAY
-        if not xdpyinfo -display "$DISPLAY" >/dev/null ^/dev/null
+        set -l test $DISPLAY
+        if set -q DISPLAY[2]
+            set test $DISPLAY[1]:$DISPLAY[2]
+        end
+        if not xdpyinfo -display "$test" >/dev/null ^/dev/null
             set_color red
-            echo "Removing invalid display $DISPLAY"
+            echo "Removing invalid display '$test'"
             set_color normal
             set -e DISPLAY
         end
