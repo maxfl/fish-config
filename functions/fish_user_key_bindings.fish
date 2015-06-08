@@ -26,11 +26,13 @@ function fish_user_key_bindings --description 'User key bindings for fish'
         bind -M insert -m insert \e\[F end-of-line
 
         bind gt __commandline_toggle
-        bind ge .edit_cmd
+        bind ge __edit_cmd
         bind : 'read -l -s -m vi_command -p "echo $fish_bind_mode:" var; echo $var|source; commandline -f repaint'
 
         bind -M visual -m insert c default kill-selection end-selection force-repaint
         bind $mode \e\x7f backward-kill-path-component
+
+        bind $mode \eb backward-word
 
         bind $mode \e\eOC nextd-or-forward-word
         bind $mode \e\eOD prevd-or-backward-word
@@ -43,6 +45,8 @@ function fish_user_key_bindings --description 'User key bindings for fish'
         bind $mode \e\[1\;3C nextd-or-forward-word
         bind $mode \e\[1\;3D prevd-or-backward-word
         bind $mode \cl 'clear; commandline -f repaint'
+
+        bind -m insert \n execute
     end
 
     bind $mode \eW '.cmd_wrap \( \)'
