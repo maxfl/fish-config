@@ -47,6 +47,13 @@ function fish_user_key_bindings --description 'User key bindings for fish'
         bind $mode \cl 'clear; commandline -f repaint'
 
         bind -m insert \n execute
+
+        bind    yaE   'commandline | xsel'
+        bind '"*yaE'  'commandline | xsel -p'
+        bind '"+yaE'  'commandline | xsel -b'
+        bind    graE  'commandline -- (xsel)'
+        bind '"*graE' 'commandline -- (xsel -p)'
+        bind '"+graE' 'commandline -- (xsel -b)'
     end
 
     bind $mode \eW '.cmd_wrap \( \)'
@@ -65,6 +72,7 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     bind $mode \ed "set -l cl (commandline -o); if set -q cl[1]; commandline -f kill-word; else; dirh; commandline -f repaint; end"
 
 	bind $mode \e\n "commandline -i \n"
+    bind $mode \eS __ask_prefix
 
     if set -q mode[1]
         bind -M insert -e \e
