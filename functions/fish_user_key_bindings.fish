@@ -54,6 +54,21 @@ function fish_user_key_bindings --description 'User key bindings for fish'
         bind    graE  'commandline -- (xsel)'
         bind '"*graE' 'commandline -- (xsel -p)'
         bind '"+graE' 'commandline -- (xsel -b)'
+
+        bind yy beginning-of-line kill-line yank
+
+        bind -M visual \x24 end-of-line
+        bind -M visual \x5e beginning-of-line
+        bind -M visual 0 beginning-of-line
+        bind -M visual g\x24 end-of-line
+        bind -M visual g\x5e beginning-of-line
+        bind -M visual \e\[H beginning-of-line
+        bind -M visual \e\[F end-of-line
+
+        bind -M visual k up-line
+        bind -M visual j down-line
+
+        bind -M visual -m insert  c kill-selection end-selection force-repaint
     end
 
     bind $mode \eW '.cmd_wrap \( \)'
@@ -73,6 +88,7 @@ function fish_user_key_bindings --description 'User key bindings for fish'
 
 	bind $mode \e\n "commandline -i \n"
     bind $mode \eS __ask_prefix
+
 
     if set -q mode[1]
         bind -M insert -e \e
