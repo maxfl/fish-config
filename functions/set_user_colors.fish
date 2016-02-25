@@ -28,6 +28,8 @@ function set_user_colors
     set -U fish_prompt_root (set_color red)
     set -U fish_prompt_user (set_color green)
     set -U fish_prompt_jobs (set_color 505050)
+    set -U fish_prompt_status (set_color red)
+    set -U fish_prompt_date (set_color 505050)
 
     set -U fish_color_mode_insert (set_color green)
     set -U fish_color_mode_default (set_color blue)
