@@ -1,5 +1,5 @@
 function fish_prompt --description 'Write out the prompt'
-    set -l __fish_prompt_last_status $status
+	set -l __fish_prompt_last_status $status
 	if not set -q __fish_prompt_hostname
 		set -g __fish_prompt_hostname @(hostname|cut -d . -f 1)
 	end
@@ -33,7 +33,7 @@ function fish_prompt --description 'Write out the prompt'
     switch $PWD
         case ~
         case '*'
-        prompt_git '    [%s] '
+        prompt_git ' [%s]'
     end
 	prompt_njobs
 	prompt_last_status
