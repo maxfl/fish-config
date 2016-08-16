@@ -23,7 +23,7 @@ function fish_prompt --description 'Write out the prompt'
     if functions -q fish_vi_cursor_handle
         fish_vi_cursor_handle
     end
-	prompt_vi '[%s] '
+	#prompt_vi '[%s] '
     echo -n "$fish_prompt_normal"
 	echo -n $user
 	echo -n "$__fish_prompt_hostname"

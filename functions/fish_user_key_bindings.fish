@@ -89,6 +89,7 @@ function fish_user_key_bindings --description 'User key bindings for fish'
 	bind $mode \e\n "commandline -i \n"
     bind $mode \eS __ask_prefix
 
+	bind $mode \el __fish_list_current_token
 
     if set -q mode[1]
         bind -M insert -e \e
