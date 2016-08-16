@@ -3,12 +3,12 @@ function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (f
     if test "$newargv[-1]" = 1
         echo Error
         return 1
-    else 
+    else
         set -e newargv[-1]
     end
     echo $newargv
 
-    set -l authors; set -l title; set -l id; set -l url; set -l month; set -l year; set -l institution; set -l simulate; set -l prefix; set -l move; 
+    set -l authors; set -l title; set -l id; set -l url; set -l month; set -l year; set -l institution; set -l simulate; set -l prefix; set -l move;
     set -l type internal publication
     set -l bib /dev/null
     while set -q newargv[1]
@@ -25,11 +25,11 @@ function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (f
             set title $newargv[2]
             set -e newargv[1]
 
-            case -- --id 
+            case -- --id
             set id $newargv[2]
             set -e newargv[1]
 
-            case -- --institution -i 
+            case -- --institution -i
             set institution $newargv[2]
             set -e newargv[1]
 
@@ -62,10 +62,20 @@ function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (f
         set -e newargv[1]
     end
     set -l pdf $newargv[1]
+    if not set -q id[1]
+        if not set id (string match -r '_(\d+)_' $pdf)[2]
+            set_color red
+            echo Can not determine document id from filename $pdf
+            return 1
+        end
+        set_color green
+        echo Guessed ID: $id
+        set_color normal
+    end
     if not set -q url[1]
         set url "http://dayabay.ihep.ac.cn/cgi-bin/DocDB/ShowDocument?docid=$id"
     end
-    
+
     #if set -1 move[1]
         #set -l newname docdb_$id_
     #end
@@ -83,8 +93,8 @@ author      = {$authors},
 title       = {$title},
 type        = {$type}, " | tee $bib
 
-set -q month[1]; 
-and set -q year[1]; 
+set -q month[1];
+and set -q year[1];
 and echo \
 "year        = {$year},
 month       = {$month}," | tee -a $bib
