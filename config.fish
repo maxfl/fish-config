@@ -1,4 +1,5 @@
 if status --is-interactive
+    set -x LC_ALL $LANG
     if test "$TERM" = rxvt-unicode-256color
         set -lx TERM xterm-256color
     end
