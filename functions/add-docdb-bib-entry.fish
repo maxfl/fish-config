@@ -18,7 +18,7 @@ function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (f
         end
         switch $newargv[1]
             case -- --authors -a
-            set authors $newargv[2]
+            set authors (string replace -r '\n' ' and ' $newargv[2])
             set -e newargv[1]
 
             case -- --title -t
