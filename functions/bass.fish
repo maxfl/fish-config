@@ -1,0 +1,1 @@
+/home/gonchar/.config/fisherman/bass/functions/bass.fish
