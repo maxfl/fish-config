@@ -1,1 +1,0 @@
-/home/gonchar/.config/fisherman/bass/functions/__bass.py

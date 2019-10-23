@@ -1,1 +1,0 @@
-/home/gonchar/.config/fisherman/z/functions/zclean.awk
