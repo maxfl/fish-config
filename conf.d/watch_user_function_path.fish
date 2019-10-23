@@ -1,4 +1,4 @@
-function .watch_user_function_path --description 'Monitor user function path and patch $fish_function_path' --on-variable fish_user_function_path
+function __watch_user_function_path --description 'Monitor user function path and patch $fish_function_path' --on-variable fish_user_function_path
     if not set -q fish_user_function_path_backup
         set -g fish_user_function_path_backup
     end
