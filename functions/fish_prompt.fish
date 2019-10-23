@@ -1,4 +1,4 @@
-# Defined in /tmp/fish_funced.O7P5kba1th.fish @ line 2
+# Defined in /tmp/fish_funced.VjYxilwMCL.fish @ line 2
 function fish_prompt --description 'Write out the prompt'
 	set -l __fish_prompt_last_status $status
 
@@ -18,11 +18,8 @@ function fish_prompt --description 'Write out the prompt'
 	echo -n "$fish_prompt_normal":
 	prompt_pwd
     echo -n "$fish_prompt_normal"
-    switch $PWD
-        case ~
-        case '*'
-        prompt_git ' [%s]'
-    end
+    prompt_history
+    prompt_git
 	prompt_njobs
 	prompt_last_status
 	prompt_date

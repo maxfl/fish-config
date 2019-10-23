@@ -1,1 +1,0 @@
-/home/gonchar/.config/fisherman/getopts/getopts.fish
