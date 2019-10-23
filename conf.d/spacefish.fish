@@ -1,5 +1,7 @@
 set -g SPACEFISH_PROMPT_ORDER vi_mode user dir host git package node exec_time jobs time line_sep exit_code char
-set -g SPACEFISH_CHAR_SYMBOL '❯'
+if not set -q SPACEFISH_CHAR_SYMBOL
+    set -g SPACEFISH_CHAR_SYMBOL '❯'
+end
 set -g SPACEFISH_DIR_PREFIX ''
 set -g SPACEFISH_DIR_TRUNC_REPO false
 set -g SPACEFISH_GIT_PREFIX ''
