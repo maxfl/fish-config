@@ -3,3 +3,4 @@ fish_read_history
 fishd.*
 vi_command_history
 *~
+fish_variables
