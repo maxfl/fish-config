@@ -1,0 +1,1 @@
+/home/gonchar/.config/fish/packages_local/watch_user_function_path/conf.d/watch_user_function_path.fish

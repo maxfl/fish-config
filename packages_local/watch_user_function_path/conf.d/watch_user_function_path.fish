@@ -4,13 +4,10 @@ function __watch_user_function_path --description 'Monitor user function path an
     end
 
     for oldpath in $fish_user_function_path_backup
-        if set -l idx_user (contains $oldpath $fish_user_function_path)
+        if contains $oldpath $fish_user_function_path
             continue
         end
-        if set -l idx (contains -i $oldpath $fish_function_path)
-            #echo Erase: $oldpath "[$idx]"
-            set -e fish_function_path[$idx]
-        end
+        setlist rm-value fish_function_path $oldpath
     end
     for newpath in $fish_user_function_path
         if contains $newpath $fish_function_path

@@ -2,3 +2,5 @@ jorgebucaran/fish-bax
 laughedelic/pisces
 oh-my-fish/plugin-direnv
 matchai/spacefish
+~/.config/fish/packages_local/setlist
+~/.config/fish/packages_local/watch_user_function_path
