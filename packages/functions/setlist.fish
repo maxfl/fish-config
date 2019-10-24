@@ -1,0 +1,1 @@
+/home/gonchar/.config/fish/packages_local/setlist/functions/setlist.fish
