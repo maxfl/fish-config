@@ -9,7 +9,7 @@ function __watch_user_function_path --description 'Monitor user function path an
         end
         setlist rm-value fish_function_path $oldpath
     end
-    for newpath in $fish_user_function_path
+    for newpath in $fish_user_function_path[-1..1]
         if contains $newpath $fish_function_path
             continue
         end
