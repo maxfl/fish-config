@@ -1,4 +1,5 @@
-set -g SPACEFISH_PROMPT_ORDER vi_mode user dir host git package node exec_time jobs time line_sep exit_code char
+#set -g SPACEFISH_PROMPT_ORDER vi_mode user dir host git package node exec_time jobs time line_sep exit_code char
+set -g SPACEFISH_PROMPT_ORDER user dir host git package node exec_time jobs time line_sep exit_code char_vi
 if not set -q SPACEFISH_CHAR_SYMBOL
     set -g SPACEFISH_CHAR_SYMBOL '❯'
 end
