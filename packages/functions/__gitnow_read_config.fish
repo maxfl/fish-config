@@ -1,0 +1,1 @@
+__gitnow_config_file.fish
