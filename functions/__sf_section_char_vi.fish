@@ -13,7 +13,7 @@ function __sf_section_char_vi -d "Display the prompt character"
 	__sf_util_set_default SPACEFISH_CHAR_VI_COLOR_SUCCESS     normal
     __sf_util_set_default SPACEFISH_CHAR_VI_COLOR_FAILURE     --background red
     __sf_util_set_default SPACEFISH_CHAR_VI_COLOR_INSERT      normal
-    __sf_util_set_default SPACEFISH_CHAR_VI_COLOR_NORMAL      white
+    __sf_util_set_default SPACEFISH_CHAR_VI_COLOR_NORMAL      cyan
     __sf_util_set_default SPACEFISH_CHAR_VI_COLOR_REPLACE_ONE red
     __sf_util_set_default SPACEFISH_CHAR_VI_COLOR_VISUAL      yellow
 
