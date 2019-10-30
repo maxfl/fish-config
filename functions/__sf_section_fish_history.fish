@@ -9,7 +9,7 @@ function __sf_section_fish_history -d "Format the displayed branch name"
 
 	__sf_util_set_default SPACEFISH_FISH_HISTORY_SHOW true
 	__sf_util_set_default SPACEFISH_FISH_HISTORY_PREFIX $SPACEFISH_GIT_SYMBOL
-	__sf_util_set_default SPACEFISH_FISH_HISTORY_SUFFIX " "
+	__sf_util_set_default SPACEFISH_FISH_HISTORY_SUFFIX ": "
 	__sf_util_set_default SPACEFISH_FISH_HISTORY_COLOR blue
 
 	# ------------------------------------------------------------------------------
