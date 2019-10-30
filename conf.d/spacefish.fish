@@ -1,7 +1,6 @@
-
 # PROMPT
-#set -g SPACEFISH_PROMPT_ORDER vi_mode user dir host git package node exec_time jobs time line_sep exit_code char
-set -g SPACEFISH_PROMPT_ORDER clear user dir host git package node exec_time jobs time line_sep exit_code char_vi
+#set -g SPACEFISH_PROMPT_ORDER clear vi_mode fish_history user dir host git exec_time jobs time line_sep exit_code char
+set -g SPACEFISH_PROMPT_ORDER  clear         fish_history user dir host git exec_time jobs time line_sep exit_code char_vi
 set -g SPACEFISH_PROMPT_ADD_NEWLINE false
 set -g SPACEFISH_PROMPT_PREFIXES_SHOW false
 

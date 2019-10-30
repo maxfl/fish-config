@@ -5,4 +5,4 @@ matchai/spacefish
 ~/.config/fish/packages_local/setlist
 ~/.config/fish/packages_local/watch_user_function_path
 oh-my-fish/plugin-gi
-joseluisq/gitnow@2.1.1
+joseluisq/gitnow
