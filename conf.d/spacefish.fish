@@ -8,6 +8,9 @@ set -g SPACEFISH_PROMPT_PREFIXES_SHOW false
 if not set -q SPACEFISH_CHAR_SYMBOL
     set -g SPACEFISH_CHAR_SYMBOL '❯'
 end
+if not set -q SPACEFISH_CHAR_VI_SYMBOL
+    set -g SPACEFISH_CHAR_VI_SYMBOL '❯'
+end
 # DIR
 set -g SPACEFISH_DIR_TRUNC_REPO false
 set -g SPACEFISH_DIR_COLOR brblue
