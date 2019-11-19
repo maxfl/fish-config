@@ -1,8 +1,11 @@
-function cmake-mkbuild -d 'Prepare new cmake build folder'
+function cmake-mkbuild -d 'Prepare new cmake build folder' -a path
+    set -e argv[1]
     set -l wd $PWD
-    pushd (realpath build)
+    pushd (realpath $path)
 
-    command rm -rf ./*
+    if count * > /dev/null
+        command rm -rf *
+    end
     and cmake $wd $argv
 
     popd
