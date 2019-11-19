@@ -7,3 +7,4 @@ oh-my-fish/plugin-gi
 joseluisq/gitnow
 #matchai/spacefish
 maxfl/spacefish
+~/.config/fish/packages_local/cmake_helpers
