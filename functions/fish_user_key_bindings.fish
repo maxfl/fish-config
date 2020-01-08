@@ -7,7 +7,7 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     #bind : 'read -l -s -m vi_command -p "echo $fish_bind_mode:" var; echo $var|source; commandline -f repaint'
 
     # Open Dolphin in current folder
-    bind --user gd 'dolphin (pwd)'
+    bind --user gd 'dolphin (pwd)&; disown (jobs -lp)'
 
     # Yank to clipboard using xsel
     bind --user    yaE   'commandline | xsel'
@@ -27,5 +27,7 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     bind --user -M insert -m insert \ef forward-word
     bind --user -M insert -m insert \eb backward-word
     bind --user -M insert -m insert \cf accept-autosuggestion forward-char
+
+    bind --user -M insert -m default \co ''
 end
 
