@@ -1,0 +1,1 @@
+/home/gonchar/.config/fish/packages_local/cmake_helpers/functions/cmake-mkbuild.fish
