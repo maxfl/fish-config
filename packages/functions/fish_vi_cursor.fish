@@ -1,0 +1,1 @@
+/home/gonchar/.config/fish/packages_local/official_fixed/functions/fish_vi_cursor.fish
