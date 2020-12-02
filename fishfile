@@ -3,7 +3,8 @@ laughedelic/pisces
 oh-my-fish/plugin-direnv
 ~/.config/fish/packages_local/setlist
 ~/.config/fish/packages_local/watch_user_function_path
-oh-my-fish/plugin-gi
+bergercookie/plugin-gi
+#oh-my-fish/plugin-gi
 joseluisq/gitnow
 #matchai/spacefish
 maxfl/spacefish
