@@ -40,7 +40,7 @@ function fish_user_key_bindings --description 'User key bindings for fish'
 
     bind --user -M insert -m default \co ''
 
-    bind --user \t __fish_load_commandline
+    bind --user \et __fish_load_commandline
 
     #if set -q NVIM_LISTEN_ADDRESS
         ## Escape from normal mode to nvim
