@@ -10,3 +10,4 @@ joseluisq/gitnow
 maxfl/spacefish
 ~/.config/fish/packages_local/cmake_helpers
 ~/.config/fish/packages_local/official_fixed
+~/.config/fish/packages_local/load_commandline

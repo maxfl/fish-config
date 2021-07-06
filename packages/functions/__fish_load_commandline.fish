@@ -1,0 +1,1 @@
+/home/gonchar/.config/fish/packages_local/load_commandline/functions/__fish_load_commandline.fish
