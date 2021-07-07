@@ -3,13 +3,13 @@
 
 set -g gitnow_version 2.8.0
 
-if set -q __fish_config_dir
-    set -g fish_config "$__fish_config_dir"
-else
-    set -q XDG_CONFIG_HOME
-        and set -g fish_config "$XDG_CONFIG_HOME/fish"
-        or set -g fish_config "~/.config/fish"
-end
+#if set -q __fish_config_dir
+    #set -g fish_config "$__fish_config_dir"
+#else
+    #set -q XDG_CONFIG_HOME
+        #and set -g fish_config "$XDG_CONFIG_HOME/fish"
+        #or set -g fish_config "~/.config/fish"
+#end
 
 set -q fish_snippets; or set -g fish_snippets "$fish_config/conf.d"
 set -q fish_functions; or set -g fish_functions "$fish_config/functions"
