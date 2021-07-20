@@ -9,7 +9,7 @@ if set -q DISPLAY
     end
 
     if type -q xdpyinfo
-        if not xdpyinfo -display "$test" >/dev/null ^/dev/null
+        if not xdpyinfo -display "$test" >/dev/null 2>/dev/null
             set_color red
             echo "Removing invalid display '$test'"
             set_color normal

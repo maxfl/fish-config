@@ -4,6 +4,7 @@ function fish_user_key_bindings --description 'User key bindings for fish'
 
     bind --user gt __commandline_toggle
     bind --user ge edit_command_buffer
+    bind --user gl __fish_load_commandline
     #bind : 'read -l -s -m vi_command -p "echo $fish_bind_mode:" var; echo $var|source; commandline -f repaint'
 
     #
@@ -39,8 +40,6 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     bind --user -M insert -m insert \cf accept-autosuggestion forward-char
 
     bind --user -M insert -m default \co ''
-
-    bind --user \et __fish_load_commandline
 
     #if set -q NVIM_LISTEN_ADDRESS
         ## Escape from normal mode to nvim
