@@ -1,68 +1,46 @@
 function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (from selection)'
-	eval set newargv (getopt -s sh -l authors:,title:,id:,url:,month:,year:,institution:,simulate,prefix:,move,type: -o a:,t:,i:,u:,m:,y:,s,p:,T: -- $argv; echo $status)
-    if test "$newargv[-1]" = 1
-        echo Error
-        return 1
-    else
-        set -e newargv[-1]
-    end
-    echo $newargv
+    set -l _flag_type internal publication
+    set -l opts \
+             --min-args 1 \
+             'a/authors=' 't/title=' 'id=' 'i/institution=' 'u/url=' 'd/docdb=' \
+             'm/month=!_validate_int' 'T/type=' 'y/year=!_validate_int' 'v#version' \
+             'w/write' 'h/help'
 
-    set -l authors; set -l title; set -l id; set -l url; set -l month; set -l year; set -l institution; set -l simulate; set -l prefix; set -l move;
-    set -l type internal publication
-    set -l bib /dev/null
-    while set -q newargv[1]
-        if test $newargv[1] = '--'
-            set -e newargv[1]
-            break
+    set -l _flag_help
+    argparse  $opts -- $argv
+    or set _flag_help error
+
+    if not test "$_flag_help"
+        for flag in author title docdb
+            if not set -q _flag_$flag
+                set -l _flag_help $flag
+            end
         end
-        switch $newargv[1]
-            case -- --authors -a
-            set authors (string replace -r '\n' ' and ' $newargv[2])
-            set -e newargv[1]
-
-            case -- --title -t
-            set title $newargv[2]
-            set -e newargv[1]
-
-            case -- --id
-            set id $newargv[2]
-            set -e newargv[1]
-
-            case -- --institution -i
-            set institution $newargv[2]
-            set -e newargv[1]
-
-            case -- --url -u
-            set url $newargv[2]
-            set -e newargv[1]
-
-            case -- --month -m
-            set month $newargv[2]
-            set -e newargv[1]
-
-            case -- --year -y
-            set year $newargv[2]
-            set -e newargv[1]
-
-            case -- --prefix -p
-            set prefix $newargv[2]
-
-            case -- --simulate -s
-            set simulate 1
-
-            case -- --move
-            set move $newargv[2]/
-            set -e newargv[1]
-
-            case -- --type -T
-            set type $newargv[2]
-            set -e newargv[1]
-        end
-        set -e newargv[1]
     end
-    set -l pdf $newargv[1]
-    if not set -q id[1]
+
+    if test "$_flag_help"
+        echo -- Options: (string escape -- $opts)
+
+        switch $_flag_help
+        case -h --help
+            return
+        case error
+            return 1
+        case '*'
+            echo Flag $_flag_help is not specified
+            return 1
+        end
+    end
+
+    set -l pdf $argv[1]
+    set _flag_authors (string replace -r -a '\n' ' and ' $_flag_authors)
+    if set -q _flag_version
+        set _flag_version v$_flag_version
+        set _flag_title "$_flag_title ($_flag_version)"
+    end
+
+    set -l id $_flag_id
+    if not set -q _flag_id
         if not set id (string match -r '_(\d+)_' $pdf)[2]
             set_color red
             echo Can not determine document id from filename $pdf
@@ -72,40 +50,56 @@ function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (f
         echo Guessed ID: $id
         set_color normal
     end
-    if not set -q url[1]
-        set url "http://dayabay.ihep.ac.cn/cgi-bin/DocDB/ShowDocument?docid=$id"
+
+    set -l url $_flag_url
+    if not set -q _flag_url
+        switch $_flag_docdb
+            case j juno
+                set url "https://juno.ihep.ac.cn/cgi-bin/Dev_DocDB/ShowDocument?docid=$id"
+                set _flag_docdb juno
+            case d dayabay
+                set url "https://dayabay.ihep.ac.cn/cgi-bin/DocDB/ShowDocument?docid=$id"
+                set _flag_docdb dayabay
+            case ''
+                echo DocDB is not defined
+                return 1
+            case '*'
+                echo Invalid docdb: $_flag_docdb
+                return 1
+        end
     end
 
-    #if set -1 move[1]
-        #set -l newname docdb_$id_
-    #end
-    if not set -q simulate[1]
+    set -l bib /dev/null
+    set -l bibcomment
+    if set -q _flag_write
         set bib $pdf''.bib
+    else
+        set bibcomment " #$pdf.bib"
     end
-
-    #set -l --long
-
     echo
 
     echo \
-"@techreport{docdb$id,
-author      = {$authors},
-title       = {$title},
-type        = {$type}, " | tee $bib
+"@techreport{$_flag_docdb-docdb$id$_flag_version,
+    author      = {$_flag_authors},
+    title       = {$_flag_title},
+    type        = {$_flag_type}, " \
+| tee $bib
 
-set -q month[1];
-and set -q year[1];
+set -q _flag_month;
+and set -q _flag_year;
 and echo \
-"year        = {$year},
-month       = {$month}," | tee -a $bib
+"    year        = {$_flag_year},
+    month       = {$_flag_month}," | tee -a $bib
 
-set -q institution[1]
-and echo "institution = {$institution}," | tee -a $bib
+if set -q _flag_institution
+    echo "    institution = {$_flag_institution}," | tee -a $bib
+end
 
 set -q url[1]
-and echo "url       = {$url}," | tee -a $bib
+and echo "    url       = {$url}," | tee -a $bib
 
-echo -n "}" | tee -a $bib
+echo "}
+" | tee -a $bib
 
-    echo "    > $bib"
+    echo "> $bib$bibcomment"
 end
