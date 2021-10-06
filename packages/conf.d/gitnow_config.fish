@@ -3,9 +3,7 @@
 
 set -g gitnow_version 2.9.0
 
-if set -q fisher_path
-    set -g fish_config $fisher_path
-else if set -q __fish_config_dir
+if set -q __fish_config_dir
     set -g fish_config "$__fish_config_dir"
 else
     set -q XDG_CONFIG_HOME
