@@ -40,6 +40,7 @@ function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (f
     end
 
     set -l id $_flag_id
+    set -l idshort (string trim -l -c0 $id)
     if not set -q _flag_id
         if not set id (string match -r '_(\d+)_' $pdf)[2]
             set_color red
@@ -55,10 +56,10 @@ function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (f
     if not set -q _flag_url
         switch $_flag_docdb
             case j juno
-                set url "https://juno.ihep.ac.cn/cgi-bin/Dev_DocDB/ShowDocument?docid=$id"
+                set url "https://juno.ihep.ac.cn/cgi-bin/Dev_DocDB/ShowDocument?docid=$idshort"
                 set _flag_docdb juno
             case d dayabay
-                set url "https://dayabay.ihep.ac.cn/cgi-bin/DocDB/ShowDocument?docid=$id"
+                set url "https://dayabay.ihep.ac.cn/cgi-bin/DocDB/ShowDocument?docid=$idshort"
                 set _flag_docdb dayabay
             case ''
                 echo DocDB is not defined
@@ -79,7 +80,7 @@ function add-docdb-bib-entry --description 'Add DocDB bib entry for given pdf (f
     echo
 
     echo \
-"@techreport{$_flag_docdb-docdb$id$_flag_version,
+"@techreport{$_flag_docdb-docdb$idshort$_flag_version,
     author      = {$_flag_authors},
     title       = {$_flag_title},
     type        = {$_flag_type}, " \
