@@ -1,22 +1,22 @@
-function cmake-mkbuild -d 'Prepare new cmake build folder' -a path
+function cmake-mkbuild --description 'Prepare new cmake build folder' --argument path
     set -e argv[1]
 
-    if not test "$path"
-        echo 'Should provide valid path'
-        return 1
-    end
-
+    set path (realpath $path)
     set -l wd $PWD
-    if not pushd (realpath $path)
-        popd
-        echo 'Should provide valid path'
+
+    test -d "$path"
+    or mkdir -pv $path
+    and pushd $path
+    or begin
+        echo Should provide valid path: $path
+        ls -l $path
         return 1
     end
 
-    if count * > /dev/null
-        command rm -rf *
-    end
-    and cmake $wd $argv
+    count * > /dev/null
+    and command rm -rf *
+
+    cmake $wd $argv
 
     popd
 end
