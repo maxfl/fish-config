@@ -1,5 +1,2 @@
-if not status --is-interactive
-    exit
-end
-
-set -x LC_ALL $LANG
+status --is-interactive
+and set -x LC_ALL $LANG
