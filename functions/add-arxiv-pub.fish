@@ -1,8 +1,14 @@
 function add-arxiv-pub --description 'Copy publication from arxiv'
-    argparse --min-args 3 'tbd' 'p/publication=' 'j/journal=' -- $argv
+    set -l argparse_opts --min-args 3 'tbd' 'p/publication=' 'j/journal=' h/help
+    argparse $argparse_opts -- $argv
     or begin
         echo Invalid commandline: $argv
+        echo Expect: "$argparse_opts"
         return 1
+    end
+    if test "$_flag_help"
+        echo Options: "$argparse_opts"
+        return
     end
     set filename $argv[1]
     set exp $argv[2]
