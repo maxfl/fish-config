@@ -3,11 +3,13 @@ function add-arxiv-pub --description 'Copy publication from arxiv'
     argparse $argparse_opts -- $argv
     or begin
         echo Invalid commandline: $argv
-        echo Expect: "$argparse_opts"
+        echo Options: "$argparse_opts"
+        echo Positionals: arxiv_file author title [...]
         return 1
     end
     if test "$_flag_help"
         echo Options: "$argparse_opts"
+        echo Positionals: arxiv_file author title [...]
         return
     end
     set filename $argv[1]
