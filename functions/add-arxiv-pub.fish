@@ -1,5 +1,5 @@
 function add-arxiv-pub --description 'Copy publication from arxiv'
-    set -l argparse_opts --min-args 3 'tbd' 'p/publication=' 'j/journal=' h/help
+    set -l argparse_opts --min-args 3 tbd j/journal= h/help a/arxiv= s/simulate b/bib
     argparse $argparse_opts -- $argv
     or begin
         echo Invalid commandline: $argv
@@ -13,24 +13,35 @@ function add-arxiv-pub --description 'Copy publication from arxiv'
         return
     end
     set filename $argv[1]
-    set exp $argv[2]
+    set author $argv[2]
     set -e argv[1 2]
 
-    set -l basename (basename $filename .pdf)
-    set -l newname (string join _ $exp $basename $argv).pdf
+    set -l arxivnum
+    if test "$_flag_arxiv"
+        set arxivnum $_flag_arxiv
+    else
+        set arxivnum (basename $filename .pdf)
+    end
+    set -l journal ""
+    if test "$_flag_journal"
+        set journal .$_flag_journal
+    end
+    set -l newname (string join _ $author $arxivnum$journal $argv).pdf
 
-    echo $filename '->' $newname
-    if mv -vi $filename $newname
+    if test "$_flag_simulate"
+        echo Simulating: filename '->' $newname
+        if test "$_flag_bib"
+            echo Setup bibliography from the clipboard
+        end
+        return
+    end
+
+    if not mv -vi $filename $newname
+        return 1
+    end
+
+    if test "$_flag_bib"
         add-bib-entry $newname $_flag_tbd
-        echo -n $newname | xsel
     end
-
-    if begin
-        set -q _flag_publication
-        and set -q _flag_journal
-    end
-        set -l pubname (string join _ $exp $basename.$_flag_journal $argv).pdf
-        mv -vi $_flag_publication $pubname
-        echo -n $pubname | xsel
-    end
+    echo -n $newname | xsel
 end

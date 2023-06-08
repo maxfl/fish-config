@@ -4,15 +4,16 @@ function add-bib-entry --description 'Add bib entry for given pdf (from selectio
         echo Invalid commandline: $argv
         return 1
     end
-    set -l suffix .bib
-    set pdf $argv[1]
+    set -l pdf $argv[1]
+    if not set -l oname (string replace .pdf .bib $pdf)
+        set oname $pdf.bib
+    end
     if set -q _flag_tbd
         touch $pdf.tbd
     end
 
-	set -l bib $pdf$suffix
-    xsel | tee $bib
-    echo '' >> $bib
-    echo '' >> $bib
-    echo "    > $bib"
+    xsel | tee $oname
+    echo '' >> $oname
+    echo '' >> $oname
+    echo "    > $oname"
 end
