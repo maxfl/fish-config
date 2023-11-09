@@ -9,3 +9,4 @@ joseluisq/gitnow
 /home/gonchar/.config/fish/packages_local/official_fixed
 /home/gonchar/.config/fish/packages_local/load_commandline
 jorgebucaran/replay.fish
+janw/dotenv.fish
