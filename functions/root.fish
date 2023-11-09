@@ -1,3 +1,3 @@
 function root
-	command root -l $argv
+    command root --web=off -l $argv
 end

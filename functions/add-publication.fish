@@ -1,5 +1,5 @@
-function add-arxiv-pub --description 'Copy publication from arxiv'
-    set -l argparse_opts --min-args 3 tbd j/journal= h/help a/arxiv= s/simulate b/bib
+function add-publication --description 'Add publication with bib entry'
+    set -l argparse_opts --min-args 3 tbd j/journal= h/help a/arxiv= s/simulate b/bib tar
     argparse $argparse_opts -- $argv
     or begin
         echo Invalid commandline: $argv
@@ -26,7 +26,8 @@ function add-arxiv-pub --description 'Copy publication from arxiv'
     if test "$_flag_journal"
         set journal .$_flag_journal
     end
-    set -l newname (string join _ $author $arxivnum$journal $argv).pdf
+    set -l namebase (string join _ $author $arxivnum$journal $argv)
+    set -l newname $namebase.pdf
 
     if test "$_flag_simulate"
         echo Simulating: filename '->' $newname
@@ -44,4 +45,13 @@ function add-arxiv-pub --description 'Copy publication from arxiv'
         add-bib-entry $newname $_flag_tbd
     end
     echo -n $newname | xsel
+
+    if test "$arxivnum"
+        if test "$_flag_tar"
+            arxiv-download-tar $arxivnum $namebase
+        else
+            echo "Download tar.gz:"
+            echo curl https://arxiv.org/e-print/$arxivnum -o $namebase.tar.gz
+        end
+    end
 end
