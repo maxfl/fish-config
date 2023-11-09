@@ -12,7 +12,7 @@ function add-bib-entry --description 'Add bib entry for given pdf (from selectio
         touch $pdf.tbd
     end
 
-    xsel | tee $oname
+    xsel -b | tee $oname
     echo '' >> $oname
     echo '' >> $oname
     echo "    > $oname"
