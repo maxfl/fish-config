@@ -13,6 +13,7 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     bind --user -M insert \cw backward-kill-word
     bind --user \cw backward-kill-word
     bind --user -M visual \cw backward-kill-word
+    bind --user -M insert \ew backward-kill-path-component
 
     #
     # OS shortcuts
