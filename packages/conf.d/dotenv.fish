@@ -19,6 +19,7 @@ function _fish_dotenv_source
     end
 
     echo "dotenv: Sourcing '$FISH_DOTENV_FILE'" >&2
+    block --local
     source $FISH_DOTENV_FILE
 end
 
