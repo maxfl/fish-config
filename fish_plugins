@@ -1,12 +1,11 @@
 jorgebucaran/fisher
 oh-my-fish/plugin-direnv
-/home/gonchar/.config/fish/packages_local/watch_user_function_path
-/home/gonchar/.config/fish/packages_local/setlist
+~/.config/fish/packages_local/watch_user_function_path
+~/.config/fish/packages_local/setlist
 laughedelic/pisces
 bergercookie/plugin-gi
-joseluisq/gitnow
-/home/gonchar/.config/fish/packages_local/cmake_helpers
-/home/gonchar/.config/fish/packages_local/official_fixed
-/home/gonchar/.config/fish/packages_local/load_commandline
+~/.config/fish/packages_local/cmake_helpers
+~/.config/fish/packages_local/official_fixed
+~/.config/fish/packages_local/load_commandline
 jorgebucaran/replay.fish
 janw/dotenv.fish

@@ -7,9 +7,6 @@ set -q FISH_DOTENV_FILE || set -g FISH_DOTENV_FILE .env.fish
 set -q FISH_DOTENV_ALLOWLIST || set -g FISH_DOTENV_ALLOWLIST "$__fish_config_dir/.dotenv-allowed.list"
 set -q FISH_DOTENV_BLOCKLIST || set -g FISH_DOTENV_BLOCKLIST "$__fish_config_dir/.dotenv-blocked.list"
 
-# Filename of the dotenv file to look for
-set -q FISH_DOTENV_ACTIVATED || set -g FISH_DOTENV_ACTIVATED
-
 function _fish_dotenv_source
     # First shell out to source the file in an isolated fashion. This is to
     # ensure "atomicity" where either all settings as sourced or none at all.
@@ -19,14 +16,12 @@ function _fish_dotenv_source
     end
 
     echo "dotenv: Sourcing '$FISH_DOTENV_FILE'" >&2
-    block --local
     source $FISH_DOTENV_FILE
 end
 
 function _fish_dotenv_hook --on-variable PWD
     [ -f "$FISH_DOTENV_FILE" ] || return
     set -f dirpath "$PWD"
-    contains $dirpath -- $FISH_DOTENV_ACTIVATED && return
 
     # Ensure blocklist exists
     touch "$FISH_DOTENV_BLOCKLIST"
@@ -41,7 +36,6 @@ function _fish_dotenv_hook --on-variable PWD
     # Check if env file is allowed or ask for confirmation
     if command grep -Fx -q "$dirpath" "$FISH_DOTENV_ALLOWLIST" &>/dev/null
         _fish_dotenv_source
-        set --append -g FISH_DOTENV_ACTIVATED $dirpath
     else
         read -n 1 \
             -f confirmation \

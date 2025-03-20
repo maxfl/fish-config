@@ -44,7 +44,8 @@ function add-publication --description 'Add publication with bib entry'
     if test "$_flag_bib"
         add-bib-entry $newname $_flag_tbd
     end
-    echo -n $newname | xsel
+    # echo -n $newname | xsel
+    echo -n $newname | wl-copy
 
     if test "$arxivnum"
         if test "$_flag_tar"
