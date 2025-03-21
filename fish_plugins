@@ -2,10 +2,10 @@ jorgebucaran/fisher
 oh-my-fish/plugin-direnv
 ~/.config/fish/packages_local/watch_user_function_path
 ~/.config/fish/packages_local/setlist
-laughedelic/pisces
 bergercookie/plugin-gi
 ~/.config/fish/packages_local/cmake_helpers
 ~/.config/fish/packages_local/official_fixed
 ~/.config/fish/packages_local/load_commandline
 jorgebucaran/replay.fish
 janw/dotenv.fish
+jorgebucaran/autopair.fish
