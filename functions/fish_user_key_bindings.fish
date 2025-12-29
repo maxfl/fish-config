@@ -21,14 +21,6 @@ function fish_user_key_bindings --description 'User key bindings for fish'
     # Open Dolphin in current folder
     bind --user gd 'dolphin (pwd)&; disown (jobs -lp)'
 
-    # Yank to clipboard using xsel
-    bind --user    yaE   'commandline | xsel'
-    bind --user '"*yaE'  'commandline | xsel -p'
-    bind --user '"+yaE'  'commandline | xsel -b'
-    bind --user    graE  'commandline -- (xsel)'
-    bind --user '"*graE' 'commandline -- (xsel -p)'
-    bind --user '"+graE' 'commandline -- (xsel -b)'
-
     # Wrap command line with ()
     bind --user \eW '.cmd_wrap \( \)'
 
