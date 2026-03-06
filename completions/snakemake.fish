@@ -1,4 +1,5 @@
-complete -c snakemake -s c -l cores        -d "Number of cores" --require-parameter --no-files
+complete -c snakemake -s s -l snakefile    -d "Snakefile to use" --require-parameter -a '(__fish_complete_suffix "*.snakemake")'
+complete -c snakemake -s c -l cores        -d "Number of cores" --require-parameter -a '(seq 1 (nproc))'
 complete -c snakemake -s f -l force        -d "Force execution of selected targets"
 complete -c snakemake -s F -l forceall     -d "Force execution of all targets"
 complete -c snakemake -s n -l dry-run      -d "Do not execute"
@@ -8,7 +9,7 @@ complete -c snakemake      -l unlock       -d "Remove lock on the working direct
 complete -c snakemake -s q -l quiet        -d "Hide certain information" -a "all host progress reason rules" --no-files
 complete -c snakemake      -l verbose      -d "Be verbose" 
 
-complete -c snakemake --cleanup-metadata -l cm -d "Cleanup metadata" --require-parameter --force-files
+complete -c snakemake -l cleanup-metadata -l cm -d "Cleanup metadata" --require-parameter --force-files
 
 # rules
 complete -c snakemake -s l -l list-rules -l list -d "List rules"
