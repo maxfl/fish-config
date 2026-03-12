@@ -10,7 +10,7 @@ end
 
 # snakefile
 complete -c snakemake -s s -l snakefile    -d "Snakefile to use" --require-parameter -a '(__fish_complete_suffix "*.snakemake")'
-complete -c snakemake -d "Rule" -a '(__fish_complete_snakemake --list-rules)'
+complete -c snakemake -d "Rule" -a '(__fish_complete_snakemake --list-rules)' --condition 'string match --invert --quiet -- "-*" (commandline -t)'
 
 # execution
 complete -c snakemake -s c -l cores        -d "Number of cores" --require-parameter -a '(seq 1 (nproc))'
