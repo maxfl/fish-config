@@ -10,13 +10,15 @@ end
 
 # snakefile
 complete -c snakemake -s s -l snakefile    -d "Snakefile to use" --require-parameter -a '(__fish_complete_suffix "*.snakemake")'
-complete -c snakemake -d "Rule" -a '(__fish_complete_snakemake --list-rules)' --condition 'string match --invert --quiet -- "-*" (commandline -t)'
+complete -c snakemake -d "Rule" -a '(__fish_complete_snakemake --list-target-rules)' --condition 'string match --invert --quiet -- "-*" (commandline -t)'
 
 # execution
 complete -c snakemake -s c -l cores        -d "Number of cores" --require-parameter -a '(seq 1 (nproc))'
 complete -c snakemake -s f -l force        -d "Force execution of selected targets"
 complete -c snakemake -s F -l forceall     -d "Force execution of all targets"
 complete -c snakemake -s n -l dry-run      -d "Do not execute"
+complete -c snakemake -s k -l keep-going   -d "Continue execution after failed jobs"
+complete -c snakemake      -l show-failed-logs -d "Show failed logs"
 
 # changes
 complete -c snakemake      -l list-changes -l lc -d "List files with changes" --require-parameter -a 'params code input'
