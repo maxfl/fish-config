@@ -12,6 +12,8 @@ end
 complete -c snakemake -s s -l snakefile -d "Snakefile to use" --require-parameter -a '(__fish_complete_suffix "*.snakemake")'
 complete -c snakemake -d "Rule" -a '(__fish_complete_snakemake --list-target-rules)' --condition 'string match --invert --quiet -- "-*" (commandline -t)'
 
+complete -c snakemake -s C -l config --require-parameter -d "Set config option (key=value)"
+
 # execution
 complete -c snakemake -s c -l cores -d "Number of cores" --require-parameter -a '(seq 1 (nproc))'
 complete -c snakemake -s f -l force -d "Force execution of selected targets"
